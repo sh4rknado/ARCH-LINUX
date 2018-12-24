@@ -1,0 +1,56 @@
+#!/bin/bash
+
+######################## < Config Section > ########################
+
+mac='58:C5:CB:5B:28:3E'
+delay='2'
+PING='2'
+ping_failed='2'
+LOCK='0' # False
+
+##################### < end Config Section > #####################
+
+
+# L applis va ping si il n'arrive pas a ping => CPT --
+# Si sa ping => alors CPT++
+# si cpt <=NB_PING alors LOCK SINON
+# SI CPT >=NB_PING alors UNLOCK
+
+function Check_ping {
+
+  if [ `sudo l2ping $mac -c 1 | grep "0% loss" -c` -eq 1 ] ; then #vaut 1 si l2ping contient "0% loss"
+    if [ $PING -lt 2 ]; then
+      let 'PING+=1'
+    fi
+  else
+    if [ $PING -ge 1 ]; then
+      let 'PING-=1'
+    fi
+  fi
+  # ONLY FOR DEBUG
+  # echo "PING => $PING"
+
+}
+
+function LockUnlock {
+
+  if [ $PING -ge 1 ] && [ $LOCK -eq 1 ] ; then
+      # only for debug
+      # echo "sh unlock.sh"
+      let 'LOCK=0'
+  elif [ $PING -eq 0 ] && [ $LOCK -eq 0 ]; then
+      # only for debug
+      # echo "sh lock.sh"
+      let 'LOCK=1'
+  fi
+
+}
+
+
+while [ 1 ]; do
+
+  Check_ping
+  LockUnlock
+  sleep $delay
+
+done
