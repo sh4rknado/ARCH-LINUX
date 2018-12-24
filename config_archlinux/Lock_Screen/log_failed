@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Environement Variable
+PICTURE_PATH=/home/zerocool/Bureau/test.jpeg
+DATE=$(date)
+MAIL="jordan.bertieaux@std.heh.be"
+
+
+# Take SnapShop Webcam
+ffmpeg -f video4linux2 -i /dev/video0 -vframes 1 $PICTURE_PATH
+
+# Send Picture by mail
+echo "TENTATIVE DE PIRATAGE" | mail -a  $PICTURE_PATH  -s "TENTATIVE DE PIRATAGE DU PC DATE : $DATE" $MAIL
+
+# remove picture
+rm $PICTURE_PATH

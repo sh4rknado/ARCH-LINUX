@@ -370,6 +370,7 @@ For that, just press *w*.
 
 <a id="org7bb380e"></a>
 
+
 ## Build the file system
 
 The partitions are created, but it is important not to forget to format them.
@@ -646,7 +647,93 @@ Enable it:
 Reboot the system and eject the USB.
 
     reboot
-   
+
+***************************************
+
+# todo Add into table content
+
+# Tips and Ticks
+<a id="org82546"></a>
+
+
+#### Separate /usr partition Step by Step
+
+For mount /usr (Data of pacman install) into another partition, 
+use the folowing Tutorial :
+
+---------------------
+Tutorial Step by Step
+---------------------
+<a id="org82536"></a>
+
+1) First Create Partition
+-------------------------
+
+    fdisk /dev/sdX # Change X to disk Letter
+    
+    Add a new partition: n
+
+    Partition number (3-128, default 3): *ENTER*
+
+    First sector (665600-2000409230, default 665600): *ENTER*
+
+    Last sector, +sectors or +size{K,M,G,T,P} (665600-2000409230, default 2000409230): +100G
+
+    Change a partition type: t
+
+    Partition number (1,2,3, default 3): *ENTER*
+
+    Hex code (type L to list all codes): 24
+
+    Ps : <a href="org7bb380e"> Do Write table to disk and exit </a>
+
+
+2) Build the file system
+------------------------
+     
+    mkfs.ext4 -q /dev/sdX
+
+3) mount the partition
+----------------------
+
+    A) Mount the part into temp folder
+
+      sudo mkdir -pv /mnt/Temp
+      sudo mount /dev/sdX  /mnt/Temp
+
+
+    B) Copy ther /usr into /mnt/Temp
+    
+       sudo cp -avr /usr/* /mnt/Temp
+       sudo umount -R /mnt/Temp
+
+    c) Delete /usr File
+	
+        sudo rm -rfv /usr
+	sudo mount /dev/sdX /usr
+
+
+4) Add /usr into Fstab
+----------------------
+
+
+5) Create the hook
+------------------
+
+    Edit the file for Hook usr into process of boot
+    
+    nano /etc/mkinit.cpio.conf
+    
+    
+    Modify the hook and add 'usr' after keyboard and before fsck
+ 
+    HOOKS=(base udev autodetect modconf block filesystems keyboard usr fsck shutdown)
+
+6) Launch the script
+-------------------- 
+
+
+
 # Installing a stable environment
 
 ## Audio packages
@@ -665,17 +752,9 @@ Reboot the system and eject the USB.
 
     git config --global credential.helper store
 
-## Yaourt
+## TODO install pakku + pacaur
 
-    git clone https://aur.archlinux.org/package-query.git
-    cd package-query
-    makepkg -si
-    cd ..
-    git clone https://aur.archlinux.org/yaourt.git
-    cd yaourt
-    makepkg -si
-    cd ..
-    rm -rf package-query yaourt
+
 
 ## Chromium
 
