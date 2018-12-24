@@ -37,10 +37,12 @@ function LockUnlock {
   if [ $PING -ge 1 ] && [ $LOCK -eq 1 ] ; then
       # only for debug
       # echo "sh unlock.sh"
+      sudo killall light-locker
       let 'LOCK=0'
   elif [ $PING -eq 0 ] && [ $LOCK -eq 0 ]; then
       # only for debug
       # echo "sh lock.sh"
+      light-locker-command --lock 
       let 'LOCK=1'
   fi
 
