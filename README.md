@@ -295,13 +295,13 @@ Create a new empty GPT partion table:
 ####  EFI
 
     Add a new partition: n
-    
+
     Partition number (1-128, default 1): *ENTER*
-    
+
     First sector (2048-2000409230, default 2048): *ENTER*
 
     Last sector, +sectors or +size{K,M,G,T,P} (2048-2000409230, default 2000409230): +300M
-    
+
     Change a partition type: t
 
     Hex code (type L to list all codes): 1
@@ -309,15 +309,15 @@ Create a new empty GPT partion table:
 ####  SWAP
 
     Add a new partition: n
-    
+
     Partition number (2-128, default 2): *ENTER*
-    
+
     First sector (616448-2000409230, default 616448): *ENTER*
 
     Last sector, +sectors or +size{K,M,G,T,P} (616448-2000409230, default 2000409230): +24M
 
     [ Notice: I use 24MB as I've got 16GB of RAM. ]
-    
+
     Change a partition type: t
 
     Partition number (1,2, default 2): *ENTER*
@@ -327,13 +327,13 @@ Create a new empty GPT partion table:
 ####  /
 
     Add a new partition: n
-    
+
     Partition number (3-128, default 3): *ENTER*
-    
+
     First sector (665600-2000409230, default 665600): *ENTER*
 
     Last sector, +sectors or +size{K,M,G,T,P} (665600-2000409230, default 2000409230): +100G
-    
+
     Change a partition type: t
 
     Partition number (1,2,3, default 3): *ENTER*
@@ -343,13 +343,13 @@ Create a new empty GPT partion table:
 ####  /home
 
     Add a new partition: n
-    
+
     Partition number (4-128, default 4): *ENTER*
-    
+
     First sector (x-2000409230, default x): *ENTER*
 
     Last sector, +sectors or +size{K,M,G,T,P} (x-2000409230, default 2000409230): *ENTER*
-    
+
     Change a partition type: t
 
     Partition number (1,2,3,4 default 4): *ENTER*
@@ -612,7 +612,7 @@ For 32-bit systems, replace x86_64-efi with i386-efi where appropriate.
 
         grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck
         mkdir /boot/EFI/boot
-        cp /boot/EFI/arch_grub/grubx64.efi /boot/EFI/boot/bootx64.efi	
+        cp /boot/EFI/arch_grub/grubx64.efi /boot/EFI/boot/bootx64.efi
 
 <a id="org33b511f"></a>
 
@@ -658,7 +658,7 @@ Reboot the system and eject the USB.
 
 #### Separate /usr partition Step by Step
 
-For mount /usr (Data of pacman install) into another partition, 
+For mount /usr (Data of pacman install) into another partition,
 use the folowing Tutorial :
 
 ---------------------
@@ -670,7 +670,7 @@ Tutorial Step by Step
 -------------------------
 
     fdisk /dev/sdX # Change X to disk Letter
-    
+
     Add a new partition: n
 
     Partition number (3-128, default 3): *ENTER*
@@ -690,7 +690,7 @@ Tutorial Step by Step
 
 2) Build the file system
 ------------------------
-     
+
     mkfs.ext4 -q /dev/sdX
 
 3) mount the partition
@@ -703,22 +703,22 @@ Tutorial Step by Step
 
 
     B) Copy ther /usr into /mnt/Temp
-    
+
        sudo cp -avr /usr/* /mnt/Temp
        sudo umount -R /mnt/Temp
 
     c) Delete /usr File
-	
+
         sudo rm -rfv /usr
 	sudo mount /dev/sdX /usr
 
 
 4) Add /usr into Fstab
 ----------------------
-    a) Get the list UUID of disks: 
-	
+    a) Get the list UUID of disks:
+
 	ls -lah /dev/disk/by-uuid/
-	
+
 	lrwxrwxrwx 1 root root  10 26 déc 12:16 6091-FE00 -> ../../sda1
 	lrwxrwxrwx 1 root root  10 26 déc 12:16 7551ae38-6fc8-4531-a138-18f2f08f2347 -> ../../sdb1
 	lrwxrwxrwx 1 root root  10 26 déc 12:16 8becbdea-7163-4d98-a425-72852c4d8355 -> ../../sda3
@@ -738,12 +738,12 @@ Tutorial Step by Step
 ------------------
 
     Edit the file for Hook usr into process of boot
-    
+
     nano /etc/mkinit.cpio.conf
-    
-    
+
+
     Modify the hook and add 'usr' after keyboard and before fsck
- 
+
     HOOKS=(base udev autodetect modconf block filesystems keyboard usr fsck shutdown)
 
 
@@ -757,7 +757,7 @@ Tutorial Step by Step
 	grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck
 
 	cp -avr /boot/EFI/arch_grub/grubx64.efi /boot/EFI/boot/bootx64.efi
-	
+
 
 # Installing a stable environment
 
@@ -800,7 +800,7 @@ Notice: for Intel cards, you can additionally install *xf86-video-intel*
 ### Drivers
 
     sudo pacman -S foomatic-db foomatic-db-ppds foomatic-db-gutenprint foomatic-db-gutenprint-ppds foomatic-db-nonfree foomatic-db-nonfree-ppds gutenprint
-    
+
 ## LightDM
 
     sudo pacman -S lightdm lightdm-gtk-greeter
@@ -860,4 +860,3 @@ The last thing to do, is to put copy the default picture on the path.
 
     systemctl enable lightdm.service
     systemctl start lightdm.service
-
