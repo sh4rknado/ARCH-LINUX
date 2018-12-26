@@ -2,93 +2,98 @@
 ARCHLINUX-CONFIGURATION
 
 <div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#org63fb083">1. About</a></li>
-<li><a href="#orgeb7cc6d">2. Create a Bootable UEFI USB</a>
-<ul>
-<li><a href="#org0fbb290">2.1. Make a FAT32 partition with boot flag</a></li>
-<li><a href="#orgc1918c7">2.2. Formatting the USB Flash Drive</a></li>
-<li><a href="#orgb007aa3">2.3. Labeling the USB Flash Drive</a></li>
-<li><a href="#orga50c0f6">2.4. Installation of Arch Linux on the USB Flash Drive</a></li>
-<li><a href="#org9ad32aa">2.5. Start on USB key</a></li>
-</ul>
-</li>
-<li><a href="#org42a0815">3. Installation of Arch Linux</a>
-<ul>
-<li><a href="#orgcecb97a">3.1. Temporarily change the keyboard layout</a>
-<ul>
-<li><a href="#orgca9915b">3.1.1. List available keyboard layout</a></li>
-<li><a href="#org7e52ac0">3.1.2. Load the layout</a></li>
-</ul>
-</li>
-<li><a href="#orgc73eb0a">3.2. Internet connection</a>
-<ul>
-<li><a href="#orgde312d6">3.2.1. Wi-Fi</a></li>
-<li><a href="#org4515c3d">3.2.2. Ethernet</a></li>
-</ul>
-</li>
-<li><a href="#orgbb4b217">3.3. Few verifications</a>
-<ul>
-<li><a href="#org309546d">3.3.1. Booted into UEFI mode</a></li>
-<li><a href="#org387abb2">3.3.2. Internet access</a></li>
-</ul>
-</li>
-<li><a href="#org7e85fba">3.4. Hard Disk Partitioning (UEFI)</a>
-<ul>
-<li><a href="#org4fc34c8">3.4.1. Display the Hard Disk memory</a></li>
-<li><a href="#orgbd981bd">3.4.2. Creation of the file system</a></li>
-<li><a href="#org7183160">3.4.3. Write the partitions table to the disk</a></li>
-</ul>
-</li>
-<li><a href="#org7bb380e">3.5. Build the file system</a>
-<ul>
-<li><a href="#org5ced472">3.5.1. EFI</a></li>
-<li><a href="#orgd9ee8e5">3.5.2. SWAP</a></li>
-<li><a href="#orga18a7ee">3.5.3. /</a></li>
-<li><a href="#orgbb80bff">3.5.4. /home</a></li>
-</ul>
-</li>
-<li><a href="#org6a32928">3.6. Disk mount</a>
-<ul>
-<li><a href="#orge4f5f1a">3.6.1. /</a></li>
-<li><a href="#org21399ba">3.6.2. /boot and /home</a></li>
-</ul>
-</li>
-<li><a href="#org3da06a5">3.7. Activate mirrors</a></li>
-<li><a href="#orgaa7e8eb">3.8. Installation of the system</a></li>
-<li><a href="#org67d5faa">3.9. Generate the fstab file</a></li>
-<li><a href="#org32f14fa">3.10. Chroot in the system</a></li>
-<li><a href="#org52bb743">3.11. Configurations of the system</a>
-<ul>
-<li><a href="#org2d358e9">3.11.1. Permanently adding a keyboard layout</a></li>
-<li><a href="#org595f533">3.11.2. Set languages for the system</a></li>
-<li><a href="#orgba583db">3.11.3. Set the hostname of the computer</a></li>
-<li><a href="#org360c0b8">3.11.4. Set the network to autostart</a></li>
-<li><a href="#org281f3b7">3.11.5. Set the time zone</a></li>
-<li><a href="#org52d0a22">3.11.6. Configure repository</a></li>
-<li><a href="#orga4b748b">3.11.7. Synchronisation and update of packages</a></li>
-<li><a href="#orgaec876c">3.11.8. Set a root password</a></li>
-<li><a href="#org9a3c75d">3.11.9. Set a new user with a password</a></li>
-</ul>
-</li>
-<li><a href="#org3528dc7">3.12. Install and configure boot loader</a>
-<ul>
-<li><a href="#org385832d">3.12.1. Generate the Kernel</a></li>
-<li><a href="#org57292f0">3.12.2. Installing GRUB</a></li>
-</ul>
-</li>
-<li><a href="#org33b511f">3.13. Before restart the system</a>
-<ul>
-<li><a href="#orgc5e8491">3.13.1. Exit the chroot mode</a></li>
-<li><a href="#org6e3b161">3.13.2. Unmount the partitions</a></li>
-<li><a href="#org7109cb0">3.13.3. Reboot</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</div>
+  <h2>Table of Contents</h2>
+  <div id="text-table-of-contents">
+    <ul>
+      <li><a href="#org63fb083">1. About</a></li>
+      <li><a href="#orgeb7cc6d">2. Create a Bootable UEFI USB</a>
+        <ul>
+          <li><a href="#org0fbb290">2.1. Make a FAT32 partition with boot flag</a></li>
+          <li><a href="#orgc1918c7">2.2. Formatting the USB Flash Drive</a></li>
+          <li><a href="#orgb007aa3">2.3. Labeling the USB Flash Drive</a></li>
+          <li><a href="#orga50c0f6">2.4. Installation of Arch Linux on the USB Flash Drive</a></li>
+          <li><a href="#org9ad32aa">2.5. Start on USB key</a></li>
+        </ul>
+      </li>
+      <li><a href="#org42a0815">3. Installation of Arch Linux</a>
+        <ul>
+          <li><a href="#orgcecb97a">3.1. Temporarily change the keyboard layout</a>
+          <ul>
+            <li><a href="#orgca9915b">3.1.1. List available keyboard layout</a></li>
+            <li><a href="#org7e52ac0">3.1.2. Load the layout</a></li>
+          </ul>
+        </li>
+        <li><a href="#orgc73eb0a">3.2. Internet connection</a>
+          <ul>
+            <li><a href="#orgde312d6">3.2.1. Wi-Fi</a></li>
+            <li><a href="#org4515c3d">3.2.2. Ethernet</a></li>
+          </ul>
+        </li>
+        <li><a href="#orgbb4b217">3.3. Few verifications</a>
+        <ul>
+          <li><a href="#org309546d">3.3.1. Booted into UEFI mode</a></li>
+          <li><a href="#org387abb2">3.3.2. Internet access</a></li>
+        </ul>
+      </li>
+      <li><a href="#org7e85fba">3.4. Hard Disk Partitioning (UEFI)</a>
+        <ul>
+          <li><a href="#org4fc34c8">3.4.1. Display the Hard Disk memory</a></li>
+          <li><a href="#orgbd981bd">3.4.2. Creation of the file system</a></li>
+          <li><a href="#org7183160">3.4.3. Write the partitions table to the disk</a></li>
+        </ul>
+      </li>
+      <li><a href="#org7bb380e">3.5. Build the file system</a>
+        <ul>
+          <li><a href="#org5ced472">3.5.1. EFI</a></li>
+          <li><a href="#orgd9ee8e5">3.5.2. SWAP</a></li>
+          <li><a href="#orga18a7ee">3.5.3. /</a></li>
+          <li><a href="#orgbb80bff">3.5.4. /home</a></li>
+        </ul>
+      </li>
+      <li><a href="#org6a32928">3.6. Disk mount</a>
+        <ul>
+          <li><a href="#orge4f5f1a">3.6.1. /</a></li>
+          <li><a href="#org21399ba">3.6.2. /boot and /home</a></li>
+        </ul>
+      </li>
+      <li><a href="#org3da06a5">3.7. Activate mirrors</a></li>
+      <li><a href="#orgaa7e8eb">3.8. Installation of the system</a></li>
+      <li><a href="#org67d5faa">3.9. Generate the fstab file</a></li>
+      <li><a href="#org32f14fa">3.10. Chroot in the system</a></li>
+      <li><a href="#org52bb743">3.11. Configurations of the system</a>
+        <ul>
+          <li><a href="#org2d358e9">3.11.1. Permanently adding a keyboard layout</a></li>
+          <li><a href="#org595f533">3.11.2. Set languages for the system</a></li>
+          <li><a href="#orgba583db">3.11.3. Set the hostname of the computer</a></li>
+          <li><a href="#org360c0b8">3.11.4. Set the network to autostart</a></li>
+          <li><a href="#org281f3b7">3.11.5. Set the time zone</a></li>
+          <li><a href="#org52d0a22">3.11.6. Configure repository</a></li>
+          <li><a href="#orga4b748b">3.11.7. Synchronisation and update of packages</a></li>
+          <li><a href="#orgaec876c">3.11.8. Set a root password</a></li>
+          <li><a href="#org9a3c75d">3.11.9. Set a new user with a password</a></li>
+        </ul>
+      </li>
+      <li><a href="#org3528dc7">3.12. Install and configure boot loader</a>
+      <ul>
+        <li><a href="#org385832d">3.12.1. Generate the Kernel</a></li>
+        <li><a href="#org57292f0">3.12.2. Installing GRUB</a></li>
+      </ul>
+      </li>
+      <li><a href="#org33b511f">3.13. Before restart the system</a>
+        <ul>
+          <li><a href="#orgc5e8491">3.13.1. Exit the chroot mode</a></li>
+          <li><a href="#org6e3b161">3.13.2. Unmount the partitions</a></li>
+          <li><a href="#org7109cb0">3.13.3. Reboot</a></li>
+          </ul>
+        </li>
+        <li><a href="TipsTicks">4.0 Tip and Ticks</a>
+          <ul>
+            <li><a href="usrPart">4.1 Separate usr Part</li></a>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </div>
 </div>
 
 <a id="org63fb083"></a>
@@ -650,23 +655,17 @@ Reboot the system and eject the USB.
 
 ***************************************
 
-# todo Add into table content
+# 4.0 Tips and Ticks
+<a id="TipsTicks"></a>
 
-# Tips and Ticks
-<a id="org82546"></a>
-
-
-#### Separate /usr partition Step by Step
+## 4.1 Separate /usr partition Step by Step
+<a id="usrPart"></a>
 
 For mount /usr (Data of pacman install) into another partition,
 use the folowing Tutorial :
 
----------------------
-Tutorial Step by Step
----------------------
-<a id="org82536"></a>
 
-1) First Create Partition
+4.1.1) First Create Partition
 -------------------------
 
     fdisk /dev/sdX # Change X to disk Letter
@@ -688,12 +687,12 @@ Tutorial Step by Step
     Ps : Do Write table to disk and exit
 
 
-2) Build the file system
+4.1.2) Build the file system
 ------------------------
 
     mkfs.ext4 -q /dev/sdX
 
-3) mount the partition
+4.1.3) mount the partition
 ----------------------
 
     A) Mount the part into temp folder
@@ -713,7 +712,7 @@ Tutorial Step by Step
 	sudo mount /dev/sdX /usr
 
 
-4) Add /usr into Fstab
+4.1.4) Add /usr into Fstab
 ----------------------
     a) Get the list UUID of disks:
 
@@ -734,7 +733,7 @@ Tutorial Step by Step
 	tmpfs                                     /tmp           tmpfs   defaults,noatime,mode=1777 0 0
 
 
-5) Create the hook
+4.1.5) Create the hook
 ------------------
 
     Edit the file for Hook usr into process of boot
@@ -747,7 +746,7 @@ Tutorial Step by Step
     HOOKS=(base udev autodetect modconf block filesystems keyboard usr fsck shutdown)
 
 
-6) Fresh Install grub
+4.1.6) Fresh Install grub
 ---------------------
 
 	mkinitcpio -p linux
@@ -758,6 +757,7 @@ Tutorial Step by Step
 
 	cp -avr /boot/EFI/arch_grub/grubx64.efi /boot/EFI/boot/bootx64.efi
 
+***************
 
 # Installing a stable environment
 
