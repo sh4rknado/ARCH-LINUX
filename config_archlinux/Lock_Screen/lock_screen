@@ -1,20 +1,18 @@
 #!/bin/bash
 
-######################## < Config Section > ########################
+######################## < CONFIG SECTION > ########################
 
-mac='58:C5:CB:5B:28:3E'
+mac='48:27:EA:01:50:82'
 delay='2'
 PING='2'
 ping_failed='2'
 LOCK='0' # False
+session_id=$(loginctl list-sessions | egrep zerocool | awk '{ print $1 }') # Get SESSION ID
 
-##################### < end Config Section > #####################
+##################### < END CONFIG SECTION > #####################
 
 
-# L applis va ping si il n'arrive pas a ping => CPT --
-# Si sa ping => alors CPT++
-# si cpt <=NB_PING alors LOCK SINON
-# SI CPT >=NB_PING alors UNLOCK
+######################## < FUNCTION SECTION > ########################
 
 function Check_ping {
 
@@ -27,32 +25,34 @@ function Check_ping {
       let 'PING-=1'
     fi
   fi
-  # ONLY FOR DEBUG
-  # echo "PING => $PING"
 
 }
 
 function LockUnlock {
 
   if [ $PING -ge 1 ] && [ $LOCK -eq 1 ] ; then
-      # only for debug
-      # echo "sh unlock.sh"
-      sudo killall light-locker
+
+      # UNLOCK SESSION
+      loginctl unlock-session $session_id
+
       let 'LOCK=0'
+
   elif [ $PING -eq 0 ] && [ $LOCK -eq 0 ]; then
-      # only for debug
-      # echo "sh lock.sh"
-      light-locker-command --lock 
+
+    # LOCK SESSION
+      loginctl lock-session $session_id
+
       let 'LOCK=1'
   fi
 
 }
+
+######################## < END FUNCTION SECTION > ########################
 
 
 while [ 1 ]; do
 
   Check_ping
   LockUnlock
-  sleep $delay
-
+  # sleep $delay
 done

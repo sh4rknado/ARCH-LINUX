@@ -1,0 +1,13 @@
+1) Copy The file 'log_failed' to /usr/bin/log_failed
+
+	sudo cp -avr log_failed /usr/bin/log_failed
+
+	notes : Edit the variable of environement 
+
+2) Modify Pam Module (view with pam.d folder)
+
+3) use the lock_screen script with crontab or Systemd service
+	
+	./lock_screen & 
+	notes : Edit the variable of environement 
+
