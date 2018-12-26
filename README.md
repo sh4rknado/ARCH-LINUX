@@ -685,7 +685,7 @@ Tutorial Step by Step
 
     Hex code (type L to list all codes): 24
 
-    Ps : <a href="org7bb380e"> Do Write table to disk and exit </a>
+    Ps : Do Write table to disk and exit
 
 
 2) Build the file system
@@ -715,6 +715,23 @@ Tutorial Step by Step
 
 4) Add /usr into Fstab
 ----------------------
+    a) Get the list UUID of disks: 
+	
+	ls -lah /dev/disk/by-uuid/
+	
+	lrwxrwxrwx 1 root root  10 26 déc 12:16 6091-FE00 -> ../../sda1
+	lrwxrwxrwx 1 root root  10 26 déc 12:16 7551ae38-6fc8-4531-a138-18f2f08f2347 -> ../../sdb1
+	lrwxrwxrwx 1 root root  10 26 déc 12:16 8becbdea-7163-4d98-a425-72852c4d8355 -> ../../sda3
+	lrwxrwxrwx 1 root root  10 26 déc 12:16 9dfc0eb1-7d25-4359-8703-9b3f17a65ef0 -> ../../sda2
+
+     b) Add the entry into fstab (exemple)
+
+
+	UUID=6091-FE00                            /boot/efi      vfat    defaults,noatime 0 2
+	UUID=9dfc0eb1-7d25-4359-8703-9b3f17a65ef0 /              ext4    defaults,noatime,discard 0 1
+	UUID=8becbdea-7163-4d98-a425-72852c4d8355 swap           swap    defaults,noatime,discard 0 2
+	UUID=7551ae38-6fc8-4531-a138-18f2f08f2347 /usr	 	 ext4	 defaults,noatime,discard 0 1
+	tmpfs                                     /tmp           tmpfs   defaults,noatime,mode=1777 0 0
 
 
 5) Create the hook
@@ -729,10 +746,18 @@ Tutorial Step by Step
  
     HOOKS=(base udev autodetect modconf block filesystems keyboard usr fsck shutdown)
 
-6) Launch the script
--------------------- 
 
+6) Fresh Install grub
+---------------------
 
+	mkinitcpio -p linux
+
+	grub-mkconfig -o /boot/grub/grub.cfg
+
+	grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck
+
+	cp -avr /boot/EFI/arch_grub/grubx64.efi /boot/EFI/boot/bootx64.efi
+	
 
 # Installing a stable environment
 

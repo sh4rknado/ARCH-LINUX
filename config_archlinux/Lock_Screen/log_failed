@@ -5,7 +5,6 @@ PICTURE_PATH=/home/zerocool/Bureau/test.jpeg
 DATE=$(date)
 MAIL="jordan.bertieaux@std.heh.be"
 
-
 # Take SnapShop Webcam
 ffmpeg -f video4linux2 -i /dev/video0 -vframes 1 $PICTURE_PATH
 
