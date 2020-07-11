@@ -495,7 +495,7 @@ uncomment the following lines in this file
     [root@BlackHunter zerocool]# systemctl enable lightdm.service
 
     # Install KDE PLASMA
-    [root@BlackHunter zerocool]# pacman -S plasma plasma-meta plasma-desktop konsole firefox
+    [root@BlackHunter zerocool]# pacman -S plasma plasma-meta plasma-desktop konsole firefox dolphin
 
     # File Browser
     [root@BlackHunter zerocool]# pacman -S dolphin python-dnspython qt5-imageformats kimageformats libappimage icoutils ffmpegthumbs kdegraphics-thumbnailers samba kdenetwork-filesharing gvfs-afc gvfs-smb gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-google gvfs-goa nautilus-sendto
