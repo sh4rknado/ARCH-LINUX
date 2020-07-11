@@ -1,0 +1,106 @@
+alignment top_right
+background no
+border_width 1
+#color1 875A43
+#color1 07CC0D
+color1 CCAB8D
+color2 D1E7D1
+color3 FF0000
+color4 FFFFFF
+cpu_avg_samples 2
+default_color D1E7D1
+default_outline_color white
+default_shade_color white
+double_buffer yes
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+gap_x 20
+gap_y 20
+border_outer_margin 20
+max_port_monitor_connections 64
+maximum_width 500
+minimum_width 500
+max_user_text 16384
+minimum_size 310 1200
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+stippled_borders 2
+own_window yes
+own_window_class conky-semi
+own_window_type normal
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_transparent no
+own_window_argb_value 0
+own_window_colour 000000
+own_window_argb_visual yes
+update_interval 2
+uppercase no
+use_xft yes
+xftalpha 0.8
+xftfont  Bitstream Vera Sans Mono:size=9  # for xfce
+
+TEXT
+${color}Kernel : ${color #cccc00}$kernel
+${color}Battery : ${color #cccc00}${battery} $battery_time
+
+${color}Processeurs : $hr
+
+${color #ffff00}CPU : ${goto 54} $cpu% ${goto 85} Freq : ${freq} mHz ${goto 215}${color #ff3300}${acpitemp}°C	${goto 260}${color #ffff00}RAM : $memperc% = $mem / $memmax
+${color #88cc00}${cpugraph 60,220 07CC0D FF0000 -t}				${goto 250}${color #88cc00}${memgraph 60,220 07CC0D FF0000 -t}
+${color}CPU 1 : ${color1}${cpu cpu1}% ${color #88cc00}${goto 110}${cpubar cpu1 6,130}  		${goto 250}${color}CPU 2 : ${color1}${cpu cpu2}%  ${color #88cc00}${goto 335}${cpubar cpu2 6,130}
+${color}CPU 3 : ${color1}${cpu cpu3}% ${color #88cc00}${goto 110}${cpubar cpu3 6,130}  		${goto 250}${color}CPU 4 : ${color1}${cpu cpu4}%  ${color #88cc00}${goto 335}${cpubar cpu4 6,130}
+
+${color}SWAP : ${color1}$swapperc% ${color #88cc00} ${swapbar 6,260 color1 color3} ${color1}$swap/$swapmax
+
+${color grey}Processus : Total ${color yellow}$processes ${color grey} - Running ${color yellow}$running_processes  ${color grey}$hr ${font arial:size=9}
+
+${color yellow}Highest CPU    ${goto 155}PID           ${goto 190}CPU (%)  |     ${goto 260}${color green}Highest MEM               ${goto 370}PID  						 ${goto 420}MEM (%)
+
+${color yellow}${font}${top name 1} ${goto 140} ${top pid 1} ${goto 180}${top cpu 1} ${goto 230}  | ${color green}${goto 260}${top_mem name 1} ${goto 350} ${top_mem pid 1} ${goto 420} ${top_mem mem 1}
+${color yellow}${font}${top name 3} ${goto 140} ${top pid 3} ${goto 180}${top cpu 3} ${goto 230}  | ${color green}${goto 260}$${top_mem name 3} ${goto 350} ${top_mem pid 3} ${goto 420} ${top_mem mem 3}
+${color yellow}${font}${top name 2} ${goto 140} ${top pid 2} ${goto 180}${top cpu 2} ${goto 230}  | ${color green}${goto 260}${top_mem name 2} ${goto 350} ${top_mem pid 2} ${goto 420} ${top_mem mem 2}
+${color yellow}${font}${top name 4} ${goto 140} ${top pid 4} ${goto 180}${top cpu 4} ${goto 230}  | ${color green}${goto 260}${top_mem name 4} ${goto 350} ${top_mem pid 4} ${goto 420} ${top_mem mem 4}
+${color yellow}${font}${top name 5} ${goto 140} ${top pid 5} ${goto 180}${top cpu 5} ${goto 230}  | ${color green}${goto 260}${top_mem name 5} ${goto 350} ${top_mem pid 5} ${goto 420} ${top_mem mem 5}
+${color yellow}${font}${top name 6} ${goto 140} ${top pid 6} ${goto 180}${top cpu 6} ${goto 230}  | ${color green}${goto 260}${top_mem name 6} ${goto 350} ${top_mem pid 6} ${goto 420} ${top_mem mem 6}
+${color yellow}${font}${top name 7} ${goto 140} ${top pid 7} ${goto 180}${top cpu 7} ${goto 230}  | ${color green}${goto 260}${top_mem name 7} ${goto 350} ${top_mem pid 7} ${goto 420} ${top_mem mem 7}
+${color yellow}${font}${top name 8} ${goto 140} ${top pid 8} ${goto 180}${top cpu 8} ${goto 230}  | ${color green}${goto 260}${top_mem name 8} ${goto 350} ${top_mem pid 8} ${goto 420} ${top_mem mem 8}
+${color yellow}${font}${top name 9} ${goto 140} ${top pid 9} ${goto 180}${top cpu 9} ${goto 230}  | ${color green}${goto 260}${top_mem name 9} ${goto 350} ${top_mem pid 9} ${goto 420} ${top_mem mem 9}
+
+
+${color grey}File systems: $hr
+
+${color1}/         ${alignr 300}  ${color0}${fs_used /} / ${color0}${fs_size /}   										${goto 240}${color #88cc00}${fs_bar 6,200 /}
+${color1}/boot     ${alignr 300}  ${color0}${fs_used /boot/EFI} / ${color0}${fs_size /boot/EFI}       ${goto 240}${color #88cc00}${fs_bar 6,200 /boot/EFI}
+${color1}/home     ${alignr 300}  ${color0}${fs_used /home} / ${color0}${fs_size /home}               ${goto 240}${color #88cc00}${fs_bar 6,200 /home}
+${color1}Data      ${alignr 300}  ${color0}${fs_used /mnt/Data} / ${color0}${fs_size /mnt/Data}       ${goto 240}${color #88cc00}${fs_bar 6,200 /mnt/Data}
+${color1}Windows   ${alignr 300}  ${color0}${fs_used /mnt/Windows} / ${color0}${fs_size /mnt/Windows} ${goto 240}${color #88cc00}${fs_bar 6,200 /mnt/Windows}
+${color1}Backup    ${alignr 300}  ${color0}${fs_used /mnt/Backup} / ${color0}${fs_size /mnt/Backup}   ${goto 240}${color #88cc00}${fs_bar 6,200 /mnt/Backup}
+
+
+${color grey}Network : $hr
+
+${color1}Download :${color #ffff00} ${downspeed wlp8s0} ${totaldown wlp8s0} 		                    ${goto 255}${color1}Upload :${color #ffff00} ${upspeed wlp8s0} ${totalup wlp8s0}
+${color #88cc00}${downspeedgraph wlp8s0 60,220 07CC0D FF0000 -t}${color1}     	                  ${goto 250}${color #88cc00}${upspeedgraph wlp8s0 60,220 07CC0D FF0000 -t}
+${color #ffff00}DARKNET IP : ${execi 600 proxychains curl ipinfo.io/ip}	                  				${goto 260}INT : ${font} wlp8s0
+${color #ffff00}PUBLIC IP :  ${execi 600 curl ipinfo.io/ip}					                      				${goto 260}AP MAC : ${wireless_ap wlp8s0}
+${color #ffff00}LOCAL IP :   ${execi 600 hostname --ip-addresses}	                    					  ${goto 260}CHAN : ${wireless_channel wlp8s0}
+${color #ffff00}GATEWAY :    ${execi 600 ip route | egrep "default via" | awk '{ print $3 }'}			${goto 260}FREQ : ${wireless_freq wlp8s0}
+			  																																				                  ${goto 260}MODE : ${wireless_mode wlp8s0}
+
+
+${goto -1}${font arial:size=9}${color1}Connex entrante (LHOST) :  ${tcp_portmon 1 32767 count} ${goto 270}Connex sortante (RHOST): ${tcp_portmon 32768 61000 count} ${color yellow}
+
+${tcp_portmon 1 32767 rhost 0}  ${tcp_portmon 1 32767 lservice 0}   ${goto 280}${tcp_portmon 32768 61000 rhost 0} $alignr ${tcp_portmon 32768 61000 rservice 0}
+${tcp_portmon 1 32767 rhost 1}  ${tcp_portmon 1 32767 lservice 1}   ${goto 280}${tcp_portmon 32768 61000 rhost 1} $alignr ${tcp_portmon 32768 61000 rservice 1}
+${tcp_portmon 1 32767 rhost 2}  ${tcp_portmon 1 32767 lservice 2}   ${goto 280}${tcp_portmon 32768 61000 rhost 2} $alignr ${tcp_portmon 32768 61000 rservice 2}
+${tcp_portmon 1 32767 rhost 3}  ${tcp_portmon 1 32767 lservice 3}   ${goto 280}${tcp_portmon 32768 61000 rhost 3} $alignr ${tcp_portmon 32768 61000 rservice 3}
+${tcp_portmon 1 32767 rhost 5}  ${tcp_portmon 1 32767 lservice 5}   ${goto 280}${tcp_portmon 32768 61000 rhost 5} $alignr ${tcp_portmon 32768 61000 rservice 5}
+${tcp_portmon 1 32767 rhost 4}  ${tcp_portmon 1 32767 lservice 4}   ${goto 280}${tcp_portmon 32768 61000 rhost 4} $alignr ${tcp_portmon 32768 61000 rservice 4}
+${tcp_portmon 1 32767 rhost 6}  ${tcp_portmon 1 32767 lservice 6}   ${goto 280}${tcp_portmon 32768 61000 rhost 6} $alignr ${tcp_portmon 32768 61000 rservice 6}
+${tcp_portmon 1 32767 rhost 7}  ${tcp_portmon 1 32767 lservice 7}   ${goto 280}${tcp_portmon 32768 61000 rhost 7} $alignr ${tcp_portmon 32768 61000 rservice 7}
+${tcp_portmon 1 32767 rhost 8}  ${tcp_portmon 1 32767 lservice 8}   ${goto 280}${tcp_portmon 32768 61000 rhost 8} $alignr ${tcp_portmon 32768 61000 rservice 8}
+${tcp_portmon 1 32767 rhost 9}  ${tcp_portmon 1 32767 lservice 9}   ${goto 280}${tcp_portmon 32768 61000 rhost 9} $alignr ${tcp_portmon 32768 61000 rservice 9}
+${tcp_portmon 1 32767 rhost 10} ${tcp_portmon 1 32767 lservice 10}  ${goto 280}${tcp_portmon 32768 61000 rhost 10} $alignr ${tcp_portmon 32768 61000 rservice 10}
