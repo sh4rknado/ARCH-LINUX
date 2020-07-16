@@ -12,13 +12,14 @@ for store the manage the password
 ## Install kwallet
 
       sudo pacman -S kwallet ksshaskpass kwalletmanager kwallet-pam signon-kwallet-extension
-      sudo pacman -S pass qrencode pinentry ibsecret cracklib gnupg gpgme gnupass
+      sudo pacman -S pass qrencode pinentry libsecret cracklib gnupg gpgme
 
 
 ## Install pass plugins
 
       yay -S pass-tomb pass-import pass-update pass-audit pass-otp
       yay -S browserpass-chrome browserpass-firefox browserpass
+      yay -S plasma-pass-git
 
 
 ## Initialize pass
@@ -26,7 +27,10 @@ for store the manage the password
       # Generate the key
       gpg --full-generate-key
 
-      # Generate the key
+      # Show GPG Private KEY
+      gpg --list-secret-keys --keyid-format LONG
+
+      # Initialize password key
       pass init 'KEY_ID'
 
       # Enable management of local changes through Git
@@ -69,7 +73,7 @@ the passphrase that will be use and decrypt auto
 
 install pinentry gui with kwallet
 
-      yay -S kwallet-cli
+      yay -S kwalletcli
 
 
 configure the gpg-agent for use pinentry - kwallet-cli
