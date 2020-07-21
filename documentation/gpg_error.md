@@ -23,6 +23,10 @@ Fix GPG Server Import Key
     sudo pacman-key --refresh-keys
 
 
+# PGP IMPORT 
+
+      gpg --keyserver hkp://keys.gnupg.net --recv-keys 06A26D531D56C42D66805049C5469996F0DF68EC
+
 # GPG NO_PUBKEY
 
       # Import the GPG KEY
