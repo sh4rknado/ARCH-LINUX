@@ -473,40 +473,40 @@ uncomment the following lines in this file
 ## Install Stable Environements
 
     # Install Audio Packages
-    [root@BlackHunter zerocool]# pacman -S gst-plugins-base gst-plugins-bad gst-plugins-good gst-plugins-ugly gst-libav pulseaudio pulseaudio-alsa pavucontrol alsa-utils
+    pacman -S gst-plugins-base gst-plugins-bad gst-plugins-good gst-plugins-ugly gst-libav pulseaudio pulseaudio-alsa pavucontrol alsa-utils
 
     # Install Server X Windows (xorg)
-    [root@BlackHunter zerocool]# sudo pacman -S xorg-server xorg-xinit xorg-xmessage xorg-apps xf86-input-synaptics xf86-input-libinput xdg-user-dirs
+    sudo pacman -S xorg-server xorg-xinit xorg-xmessage xorg-apps xf86-input-synaptics xf86-input-libinput xdg-user-dirs
 
     # Install touchpad (synaptics)
-    [root@BlackHunter zerocool]# pacman -S xf86-input-synaptics
+    pacman -S xf86-input-synaptics
 
     # Install package devel
-    [root@BlackHunter zerocool]# pacman -S xf86-video-vesa
+    pacman -S xf86-video-vesa
 
     # Install printer drivers
-    [root@BlackHunter zerocool]# pacman -S cups hplip python-pyqt5 foomatic-db foomatic-db-ppds foomatic-db-gutenprint-ppds foomatic-db-nonfree foomatic-db-nonfree-ppds gutenprint system-config-printer cups-pk-helper python-pysmbc      
+    pacman -S cups hplip python-pyqt5 foomatic-db foomatic-db-ppds foomatic-db-gutenprint-ppds foomatic-db-nonfree foomatic-db-nonfree-ppds gutenprint system-config-printer cups-pk-helper python-pysmbc      
 
     # Install the Display Manager
-    [root@BlackHunter zerocool]# sudo pacman -S lightdm lightdm-gtk-greeter
+    sudo pacman -S lightdm lightdm-gtk-greeter
 
     # Enable the Display Manager
-    [root@BlackHunter zerocool]# systemctl enable lightdm.service
+    systemctl enable lightdm.service
 
     # Install KDE PLASMA
-    [root@BlackHunter zerocool]# pacman -S plasma plasma-meta plasma-desktop konsole firefox dolphin
+    pacman -S plasma plasma-meta plasma-desktop konsole firefox dolphin
 
     # File Browser
-    [root@BlackHunter zerocool]# pacman -S dolphin python-dnspython qt5-imageformats kimageformats libappimage icoutils ffmpegthumbs kdegraphics-thumbnailers samba kdenetwork-filesharing gvfs-afc gvfs-smb gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-google gvfs-goa nautilus-sendto
+    pacman -S dolphin python-dnspython qt5-imageformats kimageformats libappimage icoutils ffmpegthumbs kdegraphics-thumbnailers samba kdenetwork-filesharing gvfs-afc gvfs-smb gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-google gvfs-goa nautilus-sendto
 
     # Install package devel
-    [root@BlackHunter zerocool]# pacman -S base-devel nano git wget curl arch-install-scripts python-pip python-setuptools
+    pacman -S base-devel nano git wget curl arch-install-scripts python-pip python-setuptools
 
     # Install Nvidia Driver (GTX 960M and latest)
-    [root@BlackHunter zerocool]# pacman -S nvidia nvidia-settings xorg-server-devel opencl-nvidia opencl-headers
+    pacman -S nvidia nvidia-settings xorg-server-devel opencl-nvidia opencl-headers
 
     # Reboot
-    [root@BlackHunter zerocool]# reboot
+    reboot
 
 ---
 
