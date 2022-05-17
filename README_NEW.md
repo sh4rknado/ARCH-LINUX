@@ -345,10 +345,10 @@ Notes : if you have an windows installed don't touch BIOS/CMOS comptability, you
 
 ## Mount the Partition
 
-    [root@BlackHunter zerocool]# mount -v /dev/mapper/SSD-lv_root /mnt
-    [root@BlackHunter zerocool]# mkdir -pv /mnt/{home,grub,boot/EFI}
-    [root@BlackHunter zerocool]# mount -v /dev/mapper/nvme0n1p1 /mnt/boot/EFI
-    [root@BlackHunter zerocool]# mount -v /dev/mapper/SSD-lv_home /mnt/home
+     mount -v /dev/mapper/SSD-lv_root /mnt
+     mkdir -pv /mnt/{home,grub,boot/EFI}
+     mount -v /dev/mapper/nvme0n1p1 /mnt/boot/EFI
+     mount -v /dev/mapper/SSD-lv_home /mnt/home
 
 ---
 
@@ -397,76 +397,75 @@ uncomment the following lines in this file
 
 ### Update the mirrorlist
 
-    [root@BlackHunter zerocool]# yes 'n' | pacman -Suy
-    [root@BlackHunter zerocool]# yes 'y' | pacman -S  rsync curl wget git reflector
-    [root@BlackHunter zerocool]# reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist
-    [root@BlackHunter zerocool]# yes 'n' | pacman -Syy
+    yes 'n' | pacman -Suy
+    yes 'y' | pacman -S  rsync curl wget git reflector
+    reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist
+    yes 'n' | pacman -Syy
 
 ### Configure the input keyboard
 
-    [root@BlackHunter zerocool]# echo KEYMAP=be-latin1 >> /etc/vconsole.conf
-    [root@BlackHunter zerocool]# echo FONT=lat9u-16 >> /etc/vconsole.conf
+    echo KEYMAP=be-latin1 >> /etc/vconsole.conf
+    echo FONT=lat9u-16 >> /etc/vconsole.conf
 
 ### Configure the system Language
 
-    [root@BlackHunter zerocool]# cp -avr /etc/locale.gen /etc/locale.gen.bak
-
-    [root@BlackHunter zerocool]# sed -i '/en_US.UTF-8/s/^#//g' /etc/locale.gen
-    [root@BlackHunter zerocool]# sed -i '/fr_BE.UTF-8/s/^#//g' /etc/locale.gen
-    [root@BlackHunter zerocool]# sed -i '/fr_BE ISO-8859-1/s/^#//g' /etc/locale.gen
-    [root@BlackHunter zerocool]# sed -i '/fr_BE@euro/s/^#//g' /etc/locale.gen
-    [root@BlackHunter zerocool]# locale-gen
-    [root@BlackHunter zerocool]# echo "LANG=fr_BE.UTF-8" >> /etc/locale.conf
-    [root@BlackHunter zerocool]# echo "LC_COLLAPSE=C" >> /etc/locale.conf
-    [root@BlackHunter zerocool]# export LANG=fr_BE.UTF-8
-    [root@BlackHunter zerocool]# locale
-    [root@BlackHunter zerocool]# localectl set-x11-keymap be    
+    cp -avr /etc/locale.gen /etc/locale.gen.bak
+    sed -i '/en_US.UTF-8/s/^#//g' /etc/locale.gen
+    sed -i '/fr_BE.UTF-8/s/^#//g' /etc/locale.gen
+    sed -i '/fr_BE ISO-8859-1/s/^#//g' /etc/locale.gen
+    sed -i '/fr_BE@euro/s/^#//g' /etc/locale.gen
+    locale-gen
+    echo "LANG=fr_BE.UTF-8" >> /etc/locale.conf
+    echo "LC_COLLAPSE=C" >> /etc/locale.conf
+    export LANG=fr_BE.UTF-8
+    locale
+    localectl set-x11-keymap be    
 
 ### Installing cores Packages
 
     # Installing the Kernel
-    [root@BlackHunter zerocool]# pacman -S linux linux-firmware linux-headers  mkinitcpio-nfs-utils
+    pacman -S linux linux-firmware linux-headers
 
     # NFS SUPPORT
-    [root@BlackHunter zerocool]# pacman -S mkinitcpio-nfs-utils
+    pacman -S mkinitcpio-nfs-utils
 
     # Installing grub - EFI
-    [root@BlackHunter zerocool]# pacman -S grub efibootmgr freetype2 fuse2 dosfstools efibootmgr libisoburn os-prober mtools
+    pacman -S grub efibootmgr freetype2 fuse2 dosfstools efibootmgr libisoburn os-prober mtools
 
     # Installing Network Tools
-    [root@BlackHunter zerocool]# pacman -S net-tools crda bluez dnsmasq ppp modemmanager dhclient dialog  wireless_tools wpa_supplicant
+    pacman -S net-tools crda bluez dnsmasq ppp modemmanager dhclient dialog  wireless_tools wpa_supplicant
 
     # Installing Security
-    [root@BlackHunter zerocool]# pacman -S firewalld iptables nm-connection-editor
-    [root@BlackHunter zerocool]# sudo systemctl enable firewalld
+    pacman -S firewalld iptables nm-connection-editor
+    sudo systemctl enable firewalld
 
     # Install GRUB
-    [root@BlackHunter zerocool]# grub-mkconfig -o /boot/grub/grub.cfg
-    [root@BlackHunter zerocool]# grub-install --target=x86_64-efi --efi-dir=/boot/EFI --bootloader-id=ArchLinux --recheck
+    grub-mkconfig -o /boot/grub/grub.cfg
+    grub-install --target=x86_64-efi --efi-dir=/boot/EFI --bootloader-id=ArchLinux --recheck
 
 
 ### Configure Core Packages
 
     # Enable Network Manager
-    [root@BlackHunter zerocool]# sudo systemctl enable NetworkManager
-    [root@BlackHunter zerocool]# sudo systemctl enable bluetooth
+    sudo systemctl enable NetworkManager
+    sudo systemctl enable bluetooth
 
     # Configure the clock
-    [root@BlackHunter zerocool]# ln -sfv /usr/share/zoneinfo/Europe/Brussels /etc/localtime
-    [root@BlackHunter zerocool]# hwclock --systohc --utc
+    ln -sfv /usr/share/zoneinfo/Europe/Brussels /etc/localtime
+    hwclock --systohc --utc
 
     # Configure the Hostname
-    [root@BlackHunter zerocool]# echo "BlackHunter" > /etc/hostname
+    echo "BlackHunter" > /etc/hostname
 
     # Set the Password
-    [root@BlackHunter zerocool]# passwd
+    passwd
 
     # New user
-    [root@BlackHunter zerocool]# useradd -m -s /bin/bash someone
-    [root@BlackHunter zerocool]# passwd someone
+    useradd -m -s /bin/bash someone
+    passwd someone
 
     # Set the sudo permission
-    [root@BlackHunter zerocool]# echo 'zerocool ALL=(ALL) ALL' >> /etc/sudoers
+    echo 'zerocool ALL=(ALL) ALL' >> /etc/sudoers
 
 
 ---
